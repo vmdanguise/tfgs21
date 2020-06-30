@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='en' dir='ltr'>
+<head>
+	<meta charset='utf-8'>
+	<title>visualizar Profesor</title>
+	<script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
+	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js'> </script>
+</head>
+<body>
+	<select id="ejercicio" name="ejercicio">
+		<option value="ejercicio_t">ejercicio_t</option>
+		<option value="ejercicio_t">ejercicio_t</option>
+		<option value="ejercicio_t">ejercicio_t</option>
+		<option value="ejercicio_t">ejercicio_t</option>
+	  </select>
+	<br><img id='ejercicio' src='../img/ejercicio_t.jpg' width="300px" height="300px" alt=''>
+	<br>Visualizando al Alumno
+	<img id='play' src='' alt=''>
+	<video src='' id='video' style='width:640px; height: 480px;' autoplay='true' hidden="true"></video>
+	<script type='text/javascript'>
+		var socket = io();
+		socket.on('stream', function (image) {
+			var img = document.getElementById('play');
+			img.src = image;
+			$('#logger').text(image);
+			var canvas = document.getElementById('canvas');         
+		});
+	</script>
+</body>
+</html>

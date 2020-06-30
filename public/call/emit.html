@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <script src='http://code.jquery.com/jquery-1.11.2.min.js'></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js'></script>
+    <script src="p5.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <script src="ml5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>visualizar Alumno</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <select id="ejercicio" name="ejercicio">
+		<option value="ejercicio_t">ejercicio_t</option>
+		<option value="ejercicio_t">ejercicio_t</option>
+		<option value="ejercicio_t">ejercicio_t</option>
+		<option value="ejercicio_t">ejercicio_t</option>
+	  </select>
+	<br><img id='ejercicio' src='../img/ejercicio_t.jpg' width="300px" height="300px" alt=''>
+    <video src='' id='video' style='width:640px; height: 480px;' autoplay='true' hidden="true"></video>
+    <canvas style='display:none;' id='contenedor'></canvas>
+    <div id='logger'></div>
+  
+     <iframe src="indexp5.html" frameborder="0" width="640px" height="480px"></iframe>
+
+</body>
+</html>
+<script type='text/javascript'>
+    var canvas = document.getElementById('contenedor');
+    var context = canvas.getContext('2d');
+    canvas.width = 640;
+    canvas.height = 480;
+    context.width = canvas.width;
+    context.height = canvas.height;
+    var video = document.getElementById('video');
+    var socket = io();
+    function logger(msg) {
+        $('#logger').text(msg);
+    }
+    function loadCamera(stream) {
+        try {
+            video.srcObject = stream;
+        } catch (error) {
+            video.src = URL.createObjectURL(stream);
+        }
+        logger('Camara conecatada');
+    }
+    function loadFail() {
+        logger('Camara no conectada');
+    }
+    function viewVideo(video, context) {
+        /*context.drawImage(video, 0, 0, context.width, context.height);*/
+        socket.emit('stream', canvas.toDataURL('image/webp'));
+    }
+
+
+
+    $(function () {
+        navigator.getUserMedia = (navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msgGetUserMedia);
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia({ video: true, audio: false }, loadCamera, loadFail);
+        }
+        setInterval(function () {
+            greyscale();
+            viewVideo(video, context);
+        }, 1000);
+    });
+
+
+    function greyscale() {
+       var ratio = 0.5;
+        context.drawImage(video, 0, 0, context.width * ratio, context.height * ratio);
+        var imgPixels = context.getImageData(0, 0, context.width, context.height);
+        
+        for (var y = 0; y < imgPixels.height; y++) {
+            for (var x = 0; x < imgPixels.width; x++) {
+                var i = (y * 4) * imgPixels.width + x * 4;
+                var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+                imgPixels.data[i] = avg;
+                imgPixels.data[i + 1] = avg;
+                imgPixels.data[i + 2] = avg;
+            }
+        }
+        
+        context.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+
+
+    }
+
+</script>
+
+</html>

@@ -180,7 +180,12 @@ io.on('connection', function (socket) {
   socket.on('stream', function (image) {
       socket.broadcast.emit('stream', image);
   });
+  socket.on('stream2', function (image) {
+      socket.broadcast.emit('stream2', image);
 });
+});
+
+
 
 
 // aca termina la video call
