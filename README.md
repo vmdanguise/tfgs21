@@ -1,8 +1,13 @@
 # tfgs21 Trabajo Final de Graduacion Siglo 21
 Sistema de gestion de clases online para ejercicios fisicos con asistente inteligente virtual
 
-
+Video Promocional sin terminar...
 https://youtu.be/vRUf3Wdd1wM 
+
+Sistema desplegado como Demo (MVP)
+...Tiene desactivada la conexion con la base de datos...
+https://tfg21.herokuapp.com/
+
 
 
 Install the Heroku CLI
