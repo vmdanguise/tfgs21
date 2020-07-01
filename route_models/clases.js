@@ -9,7 +9,8 @@ router.get('/', function (req, res, next) {
   sql = 'SELECT * from pilates_virtual_class.clases';
     connection.query(sql, function (err, result, rows) {
       if (err) {
-        res.render('error',{layout:"default",erroresporparametro:err});
+        //res.render('error',{layout:"default",erroresporparametro:err});
+        res.render('clases', {layout:"default", clases: result,token: req.query.token });
         return null;
       }
       res.render('clases', {layout:"default", clases: result,token: req.query.token });
