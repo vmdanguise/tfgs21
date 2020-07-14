@@ -5,38 +5,43 @@
 		<ul class="nav">
 			<li><a href="/"><span class="icon-house"></span>Inicio</a></li>
 			<li class="submenu">
-				<a href="#"><span class="icon-rocket"></span>Proyectos<span class="caret icon-arrow-down6"></span></a>
+				<a href="#"><span class="icon-rocket"></span>Tareas<span class="caret icon-arrow-down6"></span></a>
 				<ul class="children">
-					<li><a href="javascript:window.open('./alarmas?token={{token}}')"><span
-								class="icon-mail"></span>alarmas</a></li>
-					<li><a href="javascript:window.open('./asistencia?token={{token}}')"><span
-								class="icon-mail"></span>asistencia</a></li>
-					<li><a href="javascript:window.open('./certificados?token={{token}}')"><span
-								class="icon-mail"></span>certificados</a></li>
-					<li><a href="javascript:window.open('./clases?token={{token}}')"><span
-								class="icon-mail"></span>clases</a></li>
-					<li><a href="javascript:window.open('./ejerciciointeligente?token={{token}}')"><span
-								class="icon-mail"></span>ejerciciointeligente</a></li>
-					<li><a href="javascript:window.open('./ejercicios_en_clase?token={{token}}')"><span
-								class="icon-mail"></span>ejercicios_en_clase</a></li>
-					<li><a href="javascript:window.open('./pagos?token={{token}}')"><span
-								class="icon-mail"></span>pagos</a></li>
-					<li><a href="javascript:window.open('./usuarios?token={{token}}')"><span
-								class="icon-mail"></span>usuarios</a></li>
-
-					<li><a href="consultas?token={{token}}"><span class="icon-mail"></span>Consultas Personalizadas</a>
+					<li><a href="javascript:var mywindows = window.open('./alarmas?token={{token}}')"><span
+								class="icon-mail"></span>Alarmas</a></li>
+					<li><a href="javascript:var mywindows = window.open('./asistencia?token={{token}}')"><span
+								class="icon-mail"></span>Asistencia</a></li>
+					<li><a href="javascript:var mywindows = window.open('./certificados?token={{token}}')"><span
+								class="icon-mail"></span>Certificados</a></li>
+					<li><a href="javascript:var mywindows = window.open('./clases?token={{token}}')"><span
+								class="icon-mail"></span>Clases</a></li>
+					<li><a href="javascript:var mywindows = window.open('./ejerciciointeligente?token={{token}}')"><span
+								class="icon-mail"></span>Ejercicio Inteligente</a></li>
+					<li><a href="javascript:var mywindows = window.open('./ejercicios_en_clase?token={{token}}')"><span
+								class="icon-mail"></span>Ejercicios en Clase</a></li>
+					<li><a href="javascript:var mywindows = window.open('./pagos?token={{token}}')"><span
+								class="icon-mail"></span>Pagos</a></li>
+					<li><a href="javascript:var mywindows = window.open('./usuarios?token={{token}}')"><span
+								class="icon-mail"></span>Usuarios</a></li>
+				</ul>
+			</li>
+			<li class="submenu">
+				<a href="#"><span class="icon-rocket"></span>Soporte<span class="caret icon-arrow-down6"></span></a>
+				<ul class="children">
+					<li><a href="javascript:{var mywindows =  window.open('consultas?token={{token}}');}"><span class="icon-mail"></span>Consultas Personalizadas</a>
 					</li>
-					<li><a href="creartablas?token={{token}}"><span class="icon-earth"></span>Crear Esquema</a></li>
+			
 				</ul>
 			</li>
 			<li class="submenu">
 				<a href="#"><span class="icon-rocket"></span>Clases<span class="caret icon-arrow-down6"></span></a>
 				<ul class="children">
-					<li><a href="javascript:window.open('../public/call/display.html?token={{token}}')"><span
-								class="icon-mail"></span>Menu Video Clase Alumno</a></li>
+					<li><a href="javascript:{var mywindows =  window.open('../public/call/display.html?token={{token}}&usuario={{usuario}}');}"><span
+								class="icon-mail"></span>Acceso para profesor</a></li>
 		
-					<li><a href="javascript:window.open('../public/call/emit.html?token={{token}}')"><span
-								class="icon-mail"></span>Menu Video Clase Profesor</a></li>
+					<li><a href="javascript:try{var mywindows =  window.open('../public/call/emit.html?token={{token}}&usuario={{usuario}}');}catch(error){};"><span
+
+								class="icon-mail"></span>Acceso para alumno</a></li>
 
 				</ul>
 			</li>
@@ -44,12 +49,16 @@
 		</ul>
 	</nav>
 </header>
+
 <footer>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<h1>Tiene 5 Dias para renovar el PAGO</h1>
+<br><br><br><br><br>
+<h1>Tiene {{pago}} Dias para renovar el PAGO</h1>
 <br>
-<h1>Tiene 2 Dias para renovar el CERTIFICADO MEDICO</h1>
+<h1>Tiene {{certificado}} Dias para renovar el CERTIFICADO MEDICO</h1>
 <br>
 Caso contrario no podra ingresar a la clase.
-
+<br>
+<div style="text-align: center">
+Access Code<h1 style="font-family: 'ccode39'; ">{{usuario}}</h1>
+</div>
 </footer>

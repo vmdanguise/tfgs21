@@ -114,8 +114,9 @@
          }
        }
        </style>
-       
+       <script src="https://www.google.com/recaptcha/api.js"></script>
        <script>
+         
            function validate() {
        var username = document.getElementById('username').value;
        var password = document.getElementById('pass').value;
@@ -158,6 +159,7 @@
            </div>
            <button class="form__submit" type="submit" value="Ingresar" formaction="/autenticar" formmethod="POST">Ingresar</button>
              <!--input class="btn" type="submit" value="Ingresar" formaction="/autenticar2Factor" formmethod="POST" /-->
+          <div style="float: right;" class="g-recaptcha" data-sitekey="6Ld9Zb4UAAAAAMVi5a8fAlHIZIHtWFssIQ1bRsvs"></div>
          </form>
        </div>
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

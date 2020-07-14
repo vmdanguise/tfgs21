@@ -1,4 +1,9 @@
 
+@font-face {
+    font-family: "ccode39";
+    src: url("../ttf/ConnectCode39.ttf");
+    }
+
 input[type=submit],
 input[type=button]{
   background: #EB3B88;
@@ -137,3 +142,6 @@ text-decoration:none;
   top:0;
   }  
 
+  canvas {
+    display: block;
+  }

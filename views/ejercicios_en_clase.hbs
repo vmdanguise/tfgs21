@@ -1,2 +1,50 @@
-        <p>Gestion Registro</p>            <div id="datosTabla" style="width: 100%; height: 100px; overflow-y: scroll;">    <table id="Table" border=1 bordercolor="white" width="100%">        <thead>            <tr><td>idejercicios</td><td>idClase</td>            </tr>        </thead>        <tbody id="contenido">            {{#each ejercicios_en_clase}}            <tr><td align="center">{{idejercicios}}</td><td align="center">{{idClase}}</td>            </tr>            {{/each}}        </tbody>    </table></div><form> <button  type="submit" value="Imprimir" formaction="/ejercicios_en_clase/imprimir_ejercicios_en_clase" formmethod="POST"><img src="https://img.icons8.com/color/50/000000/print.png"/></button>    <fieldset width="100">        <input type="hidden" id="token" size="500" maxlength="500" name="token" value="{{token}}" />        <legend>ABM</legend>        <input class="btn" type="button" value="Buscar" onclick="select_ejercicios_en_clase()" />        <input class="btn" type="button" value="Alta" onclick="insertar_ejercicios_en_clase()" />        <input class="btn" type="button" value="Baja" onclick="delete_ejercicios_en_clase()" />        <input class="btn" type="button" value="Modificar" onclick="update_ejercicios_en_clase()" />        <input class="btn" type="button" value="Cancelar" onclick="cancelar()" />        <input class="btn" type="button" value="Volver" onclick="try{javascript:window.opener.document.getElementById('idejercicios').value = window.document.getElementById('idejercicios').value;}catch(error){};window.close()"/>        <br><br><br><br><label for="idejercicios">idejercicios</label><input type="number" id="idejercicios" size="30" maxlength="30" name="idejercicios"/><a href="javascript:window.open('./ejerciciointeligente?token={{token}}')"><img src="https://img.icons8.com/color/50/000000/search.png" alt=".(+)."/></a><br><br><label for="idClase">idClase</label><input type="number" id="idClase" size="30" maxlength="30" name="idClase"/><a href="javascript:window.open('./clases?token={{token}}')"><img src="https://img.icons8.com/color/50/000000/search.png" alt=".(+)."/></a>        <br><br>        <button  type="button" value="Buscar" onclick="select_ejercicios_en_clase()" ><img  src="https://img.icons8.com/color/48/000000/find-user-male--v1.png" alt="Buscar"/> </button>        <button  type="button"  value="Alta" onclick="insertar_ejercicios_en_clase()"  ><img src="https://img.icons8.com/color/50/000000/plus--v1.png" alt="Alta"/></button>        <button  type="button"  value="Baja" onclick="delete_ejercicios_en_clase()"  ><img src="https://img.icons8.com/nolan/50/delete.png" alt="Baja" /></button>        <button  type="button"  value="Modificar" onclick="update_ejercicios_en_clase()"  ><img src="https://img.icons8.com/nolan/50/edit--v1.png" alt="Modificar" /></button>        <button  type="button" value="Cancelar" onclick="cancelar()"  ><img  src="https://img.icons8.com/officexs/50/000000/cancel-2.png" alt="Cancelar" /></button>        <button  type="button"  value="Volver" onclick="try{javascript:window.opener.document.getElementById('idejercicios').value = window.document.getElementById('idejercicios').value;}catch(error){};window.close()" ><img src="https://img.icons8.com/ios/50/000000/home.png" alt="Volver" /></button>    </fieldset></form>  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> 
-<script src="../../public/js/ejercicios_en_clase_v.js"></script> 
+<p>Gestion Registro</p>
+<div id="datosTabla" style="width: 100%; height: 100px; overflow-y: scroll;">
+        <table id="Table" border=1 bordercolor="white" width="100%">
+                <thead>
+                        <tr>
+                                <td>idejercicios</td>
+                                <td>idClase</td>
+                        </tr>
+                </thead>
+                <tbody id="contenido"> {{#each ejercicios_en_clase}} <tr>
+                                <td align="center">{{idejercicios}}</td>
+                                <td align="center">{{idClase}}</td>
+                        </tr> {{/each}} </tbody>
+        </table>
+</div>
+<form> <button type="submit" value="Imprimir" formaction="/ejercicios_en_clase/imprimir_ejercicios_en_clase"
+                formmethod="POST"><img src="https://img.icons8.com/color/50/000000/print.png" /></button>
+        <fieldset width="100"> <input type="hidden" id="token" size="500" maxlength="500" name="token"
+                        value="{{token}}" />
+                <legend>ABM</legend> <input class="btn" type="button" value="Buscar"
+                        onclick="select_ejercicios_en_clase()" /> <input class="btn" type="button" value="Alta"
+                        onclick="insertar_ejercicios_en_clase()" /> <input class="btn" type="button" value="Baja"
+                        onclick="delete_ejercicios_en_clase()" /> <input class="btn" type="button" value="Modificar"
+                        onclick="update_ejercicios_en_clase()" /> <input class="btn" type="button" value="Cancelar"
+                        onclick="cancelar()" /> <input class="btn" type="button" value="Volver"
+                        onclick="try{javascript:var mywindows = window.opener.document.getElementById('idejercicios').value = window.document.getElementById('idejercicios').value;}catch(error){};window.close()" />
+                <br><br><br><br><label for="idejercicios">idejercicios</label><input type="number" id="idejercicios"
+                        size="30" maxlength="30" name="idejercicios" /><a
+                        href="javascript:var mywindows = window.open('./ejerciciointeligente?token={{token}}')"><img
+                                src="https://img.icons8.com/color/50/000000/search.png" alt=".(+)." /></a><br><br><label
+                        for="idClase">idClase</label><input type="number" id="idClase" size="30" maxlength="30"
+                        name="idClase" /><a href="javascript:var mywindows = window.open('./clases?token={{token}}')"><img
+                                src="https://img.icons8.com/color/50/000000/search.png" alt=".(+)." /></a> <br><br>
+                <button type="button" value="Buscar" onclick="select_ejercicios_en_clase()"><img
+                                src="https://img.icons8.com/color/48/000000/find-user-male--v1.png" alt="Buscar" />
+                </button> <button type="button" value="Alta" onclick="insertar_ejercicios_en_clase()"><img
+                                src="https://img.icons8.com/color/50/000000/plus--v1.png" alt="Alta" /></button> <button
+                        type="button" value="Baja" onclick="delete_ejercicios_en_clase()"><img
+                                src="https://img.icons8.com/nolan/50/delete.png" alt="Baja" /></button> <button
+                        type="button" value="Modificar" onclick="update_ejercicios_en_clase()"><img
+                                src="https://img.icons8.com/nolan/50/edit--v1.png" alt="Modificar" /></button> <button
+                        type="button" value="Cancelar" onclick="cancelar()"><img
+                                src="https://img.icons8.com/officexs/50/000000/cancel-2.png" alt="Cancelar" /></button>
+                <button type="button" value="Volver"
+                        onclick="try{javascript:var mywindows = window.opener.document.getElementById('idejercicios').value = window.document.getElementById('idejercicios').value;}catch(error){};window.close()"><img
+                                src="https://img.icons8.com/ios/50/000000/home.png" alt="Volver" /></button>
+        </fieldset>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="../../public/js/ejercicios_en_clase_v.js"></script>

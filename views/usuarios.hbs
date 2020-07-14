@@ -1,2 +1,65 @@
-        <p>Gestion Registro</p>            <div id="datosTabla" style="width: 100%; height: 100px; overflow-y: scroll;">    <table id="Table" border=1 bordercolor="white" width="100%">        <thead>            <tr><td>idUsuarios</td><td>apellido</td><td>nombre</td><td>fechanacimiento</td><td>clave</td><td>rol</td>            </tr>        </thead>        <tbody id="contenido">            {{#each usuarios}}            <tr><td align="center">{{idUsuarios}}</td><td align="center">{{apellido}}</td><td align="center">{{nombre}}</td><td align="center">{{fechanacimiento}}</td><td align="center">{{clave}}</td><td align="center">{{rol}}</td>            </tr>            {{/each}}        </tbody>    </table></div><form> <button  type="submit" value="Imprimir" formaction="/usuarios/imprimir_usuarios" formmethod="POST"><img src="https://img.icons8.com/color/50/000000/print.png"/></button>    <fieldset width="100">        <input type="hidden" id="token" size="500" maxlength="500" name="token" value="{{token}}" />        <legend>ABM</legend>        <input class="btn" type="button" value="Buscar" onclick="select_usuarios()" />        <input class="btn" type="button" value="Alta" onclick="insertar_usuarios()" />        <input class="btn" type="button" value="Baja" onclick="delete_usuarios()" />        <input class="btn" type="button" value="Modificar" onclick="update_usuarios()" />        <input class="btn" type="button" value="Cancelar" onclick="cancelar()" />        <input class="btn" type="button" value="Volver" onclick="try{javascript:window.opener.document.getElementById('idUsuarios').value = window.document.getElementById('idUsuarios').value;}catch(error){};window.close()"/>        <br><br><br><br><label for="idUsuarios">idUsuarios</label><input type="text" id="idUsuarios" size="30" maxlength="30" name="idUsuarios"/><br><br><label for="apellido">apellido</label><input type="text" id="apellido" size="30" maxlength="30" name="apellido"/><br><br><label for="nombre">nombre</label><input type="text" id="nombre" size="30" maxlength="30" name="nombre"/><br><br><label for="fechanacimiento">fechanacimiento</label><input type="text" id="fechanacimiento" size="30" maxlength="30" name="fechanacimiento"/><br><br><label for="clave">clave</label><input type="text" id="clave" size="30" maxlength="30" name="clave"/><br><br><label for="rol">rol</label><input type="text" id="rol" size="30" maxlength="30" name="rol"/>        <br><br>        <button  type="button" value="Buscar" onclick="select_usuarios()" ><img  src="https://img.icons8.com/color/48/000000/find-user-male--v1.png" alt="Buscar"/> </button>        <button  type="button"  value="Alta" onclick="insertar_usuarios()"  ><img src="https://img.icons8.com/color/50/000000/plus--v1.png" alt="Alta"/></button>        <button  type="button"  value="Baja" onclick="delete_usuarios()"  ><img src="https://img.icons8.com/nolan/50/delete.png" alt="Baja" /></button>        <button  type="button"  value="Modificar" onclick="update_usuarios()"  ><img src="https://img.icons8.com/nolan/50/edit--v1.png" alt="Modificar" /></button>        <button  type="button" value="Cancelar" onclick="cancelar()"  ><img  src="https://img.icons8.com/officexs/50/000000/cancel-2.png" alt="Cancelar" /></button>        <button  type="button"  value="Volver" onclick="try{javascript:window.opener.document.getElementById('idUsuarios').value = window.document.getElementById('idUsuarios').value;}catch(error){};window.close()" ><img src="https://img.icons8.com/ios/50/000000/home.png" alt="Volver" /></button>    </fieldset></form>  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> 
-<script src="../../public/js/usuarios_v.js"></script> 
+<p>Gestion Registro</p>
+<div id="datosTabla" style="width: 100%; height: 100px; overflow-y: scroll;">
+        <table id="Table" border=1 bordercolor="white" width="100%">
+                <thead>
+                        <tr>
+                                <td>Id Usuarios</td>
+                                <td>Apellido</td>
+                                <td>Nombre</td>
+                                <td>Fecha Nacimiento</td>
+                                <td>Clave</td>
+                                <td>Rol</td>
+                        </tr>
+                </thead>
+                <tbody id="contenido"> {{#each usuarios}} <tr>
+                                <td align="center">{{idUsuarios}}</td>
+                                <td align="center">{{apellido}}</td>
+                                <td align="center">{{nombre}}</td>
+                                <td align="center">{{fechanacimiento}}</td>
+                                <td align="center">{{clave}}</td>
+                                <td align="center">{{rol}}</td>
+                        </tr> {{/each}} </tbody>
+        </table>
+</div>
+<form> <button type="submit" value="Imprimir" formaction="/usuarios/imprimir_usuarios" formmethod="POST"><img
+                        src="https://img.icons8.com/color/50/000000/print.png" /></button>
+        <fieldset width="100"> <input type="hidden" id="token" size="500" maxlength="500" name="token"
+                        value="{{token}}" />
+                <legend>ABM</legend> <input class="btn" type="button" value="Buscar" onclick="select_usuarios()" />
+                <input class="btn" type="button" value="Alta" onclick="insertar_usuarios()" /> <input class="btn"
+                        type="button" value="Baja" onclick="delete_usuarios()" /> <input class="btn" type="button"
+                        value="Modificar" onclick="update_usuarios()" /> <input class="btn" type="button"
+                        value="Cancelar" onclick="cancelar()" /> <input class="btn" type="button" value="Volver"
+                        onclick="try{javascript:var mywindows = window.opener.document.getElementById('idAlumno').value = window.document.getElementById('idUsuarios').value;
+                                                var mywindows = window.opener.document.getElementById('apellido').value = window.document.getElementById('apellido').value;
+                                    }catch(error){};window.close()" />
+                <br><br><br><br>
+                        <label for="idUsuarios">Id Usuarios</label><input type="text" id="idUsuarios" size="30"
+                        maxlength="30" name="idUsuarios" /><br><br>
+                        <label for="apellido">Apellido</label><input
+                        type="text" id="apellido" size="30" maxlength="30" name="apellido" /><br><br>
+                        <label for="nombre">Nombre</label><input type="text" id="nombre" size="30" maxlength="30"
+                        name="nombre" /><br><br>
+                        <label for="fechanacimiento">Fecha Nacimiento</label><input type="text"
+                        id="fechanacimiento" size="30" maxlength="30" name="fechanacimiento" /><br><br>
+                        <label for="clave">Clave</label><input type="text" id="clave" size="30" maxlength="30"
+                        name="clave" /><br><br>
+                        <label for="rol">Rol</label><input type="text" id="rol" size="30"
+                        maxlength="30" name="rol" /> <br><br> <button type="button" value="Buscar"
+                        onclick="select_usuarios()"><img
+                                src="https://img.icons8.com/color/48/000000/find-user-male--v1.png" alt="Buscar" />
+                </button> <button type="button" value="Alta" onclick="insertar_usuarios()"><img
+                                src="https://img.icons8.com/color/50/000000/plus--v1.png" alt="Alta" /></button> <button
+                        type="button" value="Baja" onclick="delete_usuarios()"><img
+                                src="https://img.icons8.com/nolan/50/delete.png" alt="Baja" /></button> <button
+                        type="button" value="Modificar" onclick="update_usuarios()"><img
+                                src="https://img.icons8.com/nolan/50/edit--v1.png" alt="Modificar" /></button> <button
+                        type="button" value="Cancelar" onclick="cancelar()"><img
+                                src="https://img.icons8.com/officexs/50/000000/cancel-2.png" alt="Cancelar" /></button>
+                <button type="button" value="Volver"
+                        onclick="try{javascript:var mywindows = window.opener.document.getElementById('idUsuarios').value = window.document.getElementById('idUsuarios').value;}catch(error){};window.close()"><img
+                                src="https://img.icons8.com/ios/50/000000/home.png" alt="Volver" /></button>
+        </fieldset>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="../../public/js/usuarios_v.js"></script>

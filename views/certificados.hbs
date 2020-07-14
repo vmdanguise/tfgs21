@@ -1,2 +1,57 @@
-        <p>Gestion Registro</p>            <div id="datosTabla" style="width: 100%; height: 100px; overflow-y: scroll;">    <table id="Table" border=1 bordercolor="white" width="100%">        <thead>            <tr><td>idcertificados</td><td>idAlumno</td><td>fechaVencimiento</td>            </tr>        </thead>        <tbody id="contenido">            {{#each certificados}}            <tr><td align="center">{{idcertificados}}</td><td align="center">{{idAlumno}}</td><td align="center">{{fechaVencimiento}}</td>            </tr>            {{/each}}        </tbody>    </table></div><form> <button  type="submit" value="Imprimir" formaction="/certificados/imprimir_certificados" formmethod="POST"><img src="https://img.icons8.com/color/50/000000/print.png"/></button>    <fieldset width="100">        <input type="hidden" id="token" size="500" maxlength="500" name="token" value="{{token}}" />        <legend>ABM</legend>        <input class="btn" type="button" value="Buscar" onclick="select_certificados()" />        <input class="btn" type="button" value="Alta" onclick="insertar_certificados()" />        <input class="btn" type="button" value="Baja" onclick="delete_certificados()" />        <input class="btn" type="button" value="Modificar" onclick="update_certificados()" />        <input class="btn" type="button" value="Cancelar" onclick="cancelar()" />        <input class="btn" type="button" value="Volver" onclick="try{javascript:window.opener.document.getElementById('idcertificados').value = window.document.getElementById('idcertificados').value;}catch(error){};window.close()"/>        <br><br><br><br><label for="idcertificados">idcertificados</label><input type="number" id="idcertificados" size="30" maxlength="30" name="idcertificados"/><br><br><label for="idAlumno">idAlumno</label><input type="text" id="idAlumno" size="30" maxlength="30" name="idAlumno"/><a href="javascript:window.open('./usuarios?token={{token}}')"><img src="https://img.icons8.com/color/50/000000/search.png" alt=".(+)."/></a><br><br><label for="fechaVencimiento">fechaVencimiento</label><input type="date" id="fechaVencimiento" size="30" maxlength="30" name="fechaVencimiento"/>        <br><br>        <button  type="button" value="Buscar" onclick="select_certificados()" ><img  src="https://img.icons8.com/color/48/000000/find-user-male--v1.png" alt="Buscar"/> </button>        <button  type="button"  value="Alta" onclick="insertar_certificados()"  ><img src="https://img.icons8.com/color/50/000000/plus--v1.png" alt="Alta"/></button>        <button  type="button"  value="Baja" onclick="delete_certificados()"  ><img src="https://img.icons8.com/nolan/50/delete.png" alt="Baja" /></button>        <button  type="button"  value="Modificar" onclick="update_certificados()"  ><img src="https://img.icons8.com/nolan/50/edit--v1.png" alt="Modificar" /></button>        <button  type="button" value="Cancelar" onclick="cancelar()"  ><img  src="https://img.icons8.com/officexs/50/000000/cancel-2.png" alt="Cancelar" /></button>        <button  type="button"  value="Volver" onclick="try{javascript:window.opener.document.getElementById('idcertificados').value = window.document.getElementById('idcertificados').value;}catch(error){};window.close()" ><img src="https://img.icons8.com/ios/50/000000/home.png" alt="Volver" /></button>    </fieldset></form>  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> 
-<script src="../../public/js/certificados_v.js"></script> 
+<p>Gestion Registro</p>
+<div id="datosTabla" style="width: 100%; height: 100px; overflow-y: scroll;">
+        <table id="Table" border=1 bordercolor="white" width="100%">
+                <thead>
+                        <tr>
+                                <td>Id Certificados</td>
+                                <td>Id Alumno</td>
+                                <td>Fecha Vencimiento</td>
+                        </tr>
+                </thead>
+                <tbody id="contenido"> {{#each certificados}} <tr>
+                                <td align="center">{{idcertificados}}</td>
+                                <td align="center">{{idalumno}}</td>
+                                <td align="center">{{fechavencimiento}}</td>
+                        </tr> {{/each}} </tbody>
+        </table>
+</div>
+<form> <button type="submit" value="Imprimir" formaction="/certificados/imprimir_certificados" formmethod="POST"><img
+                        src="https://img.icons8.com/color/50/000000/print.png" /></button>
+        <fieldset width="100"> <input type="hidden" id="token" size="500" maxlength="500" name="token"
+                        value="{{token}}" />
+                <legend>ABM</legend> <input class="btn" type="button" value="Buscar" onclick="select_certificados()" />
+                <input class="btn" type="button" value="Alta" onclick="insertar_certificados()" /> <input class="btn"
+                        type="button" value="Baja" onclick="delete_certificados()" /> <input class="btn" type="button"
+                        value="Modificar" onclick="update_certificados()" /> <input class="btn" type="button"
+                        value="Cancelar" onclick="cancelar()" /> <input class="btn" type="button" value="Volver"
+                        onclick="try{javascript:var mywindows = window.opener.document.getElementById('idcertificados').value = window.document.getElementById('idcertificados').value;}catch(error){};window.close()" />
+                <br><br><br><br>
+                <label for="idcertificados">Id Certificados</label><input type="number"
+                        id="idcertificados" size="30" maxlength="30" name="idcertificados" /><br><br>
+                <label  for="idAlumno">Id Alumno</label><input type="text" id="idAlumno" size="30" maxlength="30"
+                        name="idAlumno" /><a href="javascript:var mywindows = window.open('./usuarios?token={{token}}')"><img
+                                src="https://img.icons8.com/color/50/000000/search.png" alt=".(+)." /></a><br><br>
+                <label  for="fechaVencimiento">Fecha Vencimiento</label><input type="date" id="fechaVencimiento"
+                        size="30" maxlength="30" name="fechaVencimiento" /> <br><br> 
+                <label  for="fechaVencimientoDesde">Fecha Vencimiento Desde</label><input type="date" id="fechaVencimientoDesde"
+                        size="30" maxlength="30" name="fechaVencimientoDesde" /> <br><br> 
+                <label  for="fechaVencimientoHasta">Fecha Vencimiento Hasta</label><input type="date" id="fechaVencimientoHasta"
+                        size="30" maxlength="30" name="fechaVencimientoHasta" /> <br><br> 
+                <button type="button"
+                        value="Buscar" onclick="select_certificados()"><img
+                                src="https://img.icons8.com/color/48/000000/find-user-male--v1.png" alt="Buscar" />
+                </button> <button type="button" value="Alta" onclick="insertar_certificados()"><img
+                                src="https://img.icons8.com/color/50/000000/plus--v1.png" alt="Alta" /></button> <button
+                        type="button" value="Baja" onclick="delete_certificados()"><img
+                                src="https://img.icons8.com/nolan/50/delete.png" alt="Baja" /></button> <button
+                        type="button" value="Modificar" onclick="update_certificados()"><img
+                                src="https://img.icons8.com/nolan/50/edit--v1.png" alt="Modificar" /></button> <button
+                        type="button" value="Cancelar" onclick="cancelar()"><img
+                                src="https://img.icons8.com/officexs/50/000000/cancel-2.png" alt="Cancelar" /></button>
+                <button type="button" value="Volver"
+                        onclick="try{javascript:var mywindows = window.opener.document.getElementById('idcertificados').value = window.document.getElementById('idcertificados').value;}catch(error){};window.close()"><img
+                                src="https://img.icons8.com/ios/50/000000/home.png" alt="Volver" /></button>
+        </fieldset>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="../../public/js/certificados_v.js"></script>

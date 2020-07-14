@@ -2,58 +2,72 @@
 <html lang='en'>
 
 <head>
-    <script src='http://code.jquery.com/jquery-1.11.2.min.js'></script>
+    <script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js'></script>
-    <script src="p5.js"></script>
-    <script src="p5.sound.min.js"></script>
-    <script src="ml5.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>visualizar Alumno</title>
+    <script src="../js/p5.js"></script>
+    <script src="../js/p5.sound.min.js"></script>
+    <script src="../js/ml5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/estilo.css">
+    <title>Video chat para Alumno con asistente Virtual</title>
     <meta charset="utf-8">
+    <script>
+        function getParameterByName2(name2) {
+            name2 = name2.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex2 = new RegExp("[\\?&]" + name2 + "=([^&#]*)"),
+                results2 = regex2.exec(location.search);
+            return results2 === null ? "" : decodeURIComponent(results2[1].replace(/\+/g, " "));
+        }
+
+    </script>
 </head>
 
 <body>
-    <select id="ejercicio" name="ejercicio">
-		<option value="ejercicio_t">ejercicio_t</option>
-		<option value="ejercicio_t">ejercicio_t</option>
-		<option value="ejercicio_t">ejercicio_t</option>
-		<option value="ejercicio_t">ejercicio_t</option>
-	  </select>
-	<br><img id='ejercicio' src='../img/ejercicio_t.jpg' width="300px" height="300px" alt=''>
-    <video src='' id='video' style='width:640px; height: 480px;' autoplay='true' hidden="true"></video>
+    <input id='alumnoUsuario' type="text" value="" />
+    <input id="ejercicioSel" type="text" value="" />
+    <br><img id='ejercicioImg' src='../img/ejercicio_t.jpg' width="640px" height="480px" alt=''>
+    <video src='' id='videoTransmitir' style='width:640px; height: 480px;' autoplay='true' hidden="true"></video>
     <canvas style='display:none;' id='contenedor'></canvas>
     <div id='logger'></div>
-  
-     <iframe src="indexp5.html" frameborder="0" width="640px" height="480px"></iframe>
+
+    <div>
+        <nav>
+            <script src="../js/sketch.js"></script>
+        </nav>
+    </div>
 
 </body>
+
 </html>
+
+
 <script type='text/javascript'>
-    var canvas = document.getElementById('contenedor');
-    var context = canvas.getContext('2d');
-    canvas.width = 640;
-    canvas.height = 480;
-    context.width = canvas.width;
-    context.height = canvas.height;
-    var video = document.getElementById('video');
+    document.getElementById('alumnoUsuario').value = getParameterByName2('usuario');
+
+    var canvas2 = document.getElementById('contenedor');
+    var context2 = canvas2.getContext('2d');
+    canvas2.width = 640;
+    canvas2.height = 480;
+    context2.width = canvas2.width;
+    context2.height = canvas2.height;
+    var videoTransmitir = document.getElementById('videoTransmitir');
     var socket = io();
     function logger(msg) {
         $('#logger').text(msg);
     }
     function loadCamera(stream) {
         try {
-            video.srcObject = stream;
+            videoTransmitir.srcObject = stream;
         } catch (error) {
-            video.src = URL.createObjectURL(stream);
+            videoTransmitir.src = URL.createObjectURL(stream);
         }
         logger('Camara conecatada');
     }
     function loadFail() {
         logger('Camara no conectada');
     }
-    function viewVideo(video, context) {
-        /*context.drawImage(video, 0, 0, context.width, context.height);*/
-        socket.emit('stream', canvas.toDataURL('image/webp'));
+    function viewVideo(videoTransmitir, context2, canvas2) {
+
+        greyscale(videoTransmitir, context2, canvas2);
     }
 
 
@@ -62,22 +76,33 @@
         navigator.getUserMedia = (navigator.getUserMedia ||
             navigator.webkitGetUserMedia ||
             navigator.mozGetUserMedia ||
-            navigator.msgGetUserMedia);
+            navigator.msgGetUserMedia ||
+            navigator.mediaDevices.getUserMedia);
         if (navigator.getUserMedia) {
             navigator.getUserMedia({ video: true, audio: false }, loadCamera, loadFail);
         }
         setInterval(function () {
-            greyscale();
-            viewVideo(video, context);
+            viewVideo(videoTransmitir, context2, canvas2);
         }, 1000);
+
+        socket.on('chat', (data) => {
+            ejercicioSel.value = data.message;
+            ejercicioImg.setAttribute("src", "../img/" + ejercicioSel.value + ".jpg");
+        });
+        socket.on('audioMessage', function (audioChunks) {
+            const audioBlob = new Blob(audioChunks);
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audio = new Audio(audioUrl);
+            audio.play();
+        });
     });
 
 
-    function greyscale() {
-       var ratio = 0.5;
-        context.drawImage(video, 0, 0, context.width * ratio, context.height * ratio);
-        var imgPixels = context.getImageData(0, 0, context.width, context.height);
-        
+    function greyscale(videoTransmitir, context2, canvas2) {
+        context2.drawImage(videoTransmitir, 0, 0, context2.width, context2.height);
+        var ratio = 0.5;
+        var imgPixels = context2.getImageData(0, 0, context2.width, context2.height);
+
         for (var y = 0; y < imgPixels.height; y++) {
             for (var x = 0; x < imgPixels.width; x++) {
                 var i = (y * 4) * imgPixels.width + x * 4;
@@ -87,11 +112,11 @@
                 imgPixels.data[i + 2] = avg;
             }
         }
-        
-        context.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-
-
+        context2.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+        socket.emit('alumnoUsuario', canvas2.toDataURL('image/webp'));
     }
+
+
 
 </script>
 

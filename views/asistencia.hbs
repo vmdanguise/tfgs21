@@ -3,8 +3,8 @@
         <table id="Table" border=1 bordercolor="white" width="100%">
                 <thead>
                         <tr>
-                                <td>idClase</td>
-                                <td>idAlumno</td>
+                                <td>Id Clase</td>
+                                <td>Id Alumno</td>
                         </tr>
                 </thead>
                 <tbody id="contenido"> {{#each asistencia}} <tr>
@@ -22,13 +22,16 @@
                         type="button" value="Baja" onclick="delete_asistencia()" /> <input class="btn" type="button"
                         value="Modificar" onclick="update_asistencia()" /> <input class="btn" type="button"
                         value="Cancelar" onclick="cancelar()" /> <input class="btn" type="button" value="Volver"
-                        onclick="try{javascript:window.opener.document.getElementById('idClase').value = window.document.getElementById('idClase').value;}catch(error){};window.close()" />
-                <br><br><br><br><label for="idClase">idClase</label><input type="number" id="idClase" size="30"
+                        onclick="try{javascript:var mywindows = window.opener.document.getElementById('idClase').value = window.document.getElementById('idClase').value;}catch(error){};window.close()" />
+                <br><br><br><br><label for="idClase">Id Clase</label><input type="number" id="idClase" size="30"
                         maxlength="30" name="idClase" /><a
-                        href="javascript:window.open('./clases?token={{token}}')"><img
+                        href="javascript:var mywindows = window.open('./clases?token={{token}}')"><img
                                 src="https://img.icons8.com/color/50/000000/search.png" alt=".(+)." /></a><br><br><label
-                        for="idAlumno">idAlumno</label><input type="text" id="idAlumno" size="30" maxlength="30"
-                        name="idAlumno" /><a href="javascript:window.open('./usuarios?token={{token}}')"><img
+                        for="idAlumno">Id Alumno</label><input type="text" id="idAlumno" size="30" maxlength="30"
+                        name="idAlumno" />
+                        <label for="apellido">Apellido</label><input
+                        type="text" id="apellido" size="30" maxlength="30" name="apellido" />
+                        <a href="javascript:var mywindows = window.open('./usuarios?token={{token}}')"><img
                                 src="https://img.icons8.com/color/50/000000/search.png" alt=".(+)." /></a> <br><br>
                 <button type="button" value="Buscar" onclick="select_asistencia()"><img
                                 src="https://img.icons8.com/color/48/000000/find-user-male--v1.png" alt="Buscar" />
@@ -41,7 +44,7 @@
                         type="button" value="Cancelar" onclick="cancelar()"><img
                                 src="https://img.icons8.com/officexs/50/000000/cancel-2.png" alt="Cancelar" /></button>
                 <button type="button" value="Volver"
-                        onclick="try{javascript:window.opener.document.getElementById('idClase').value = window.document.getElementById('idClase').value;}catch(error){};window.close()"><img
+                        onclick="try{javascript:var mywindows = window.opener.document.getElementById('idClase').value = window.document.getElementById('idClase').value;}catch(error){};window.close()"><img
                                 src="https://img.icons8.com/ios/50/000000/home.png" alt="Volver" /></button>
         </fieldset>
 </form>
